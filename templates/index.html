@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library Management System</title>
+    <!-- Tailwind CSS for clean styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 p-8">
+    <div class="max-w-4xl mx-auto bg-white p-6 rounded-xl shadow-md">
+        <h1 class="text-3xl font-extrabold text-blue-600 mb-6">College Library Portal</h1>
+        
+        <!-- Add Book Form -->
+        <form action="/add" method="POST" class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+            <input type="text" name="title" placeholder="Book Title" required class="border p-2 rounded focus:outline-blue-500">
+            <input type="text" name="author" placeholder="Author Name" required class="border p-2 rounded focus:outline-blue-500">
+            <button type="submit" class="bg-blue-600 text-white font-semibold p-2 rounded hover:bg-blue-700 transition">
+                Add Book to Database
+            </button>
+        </form>
+
+        <!-- Books Table -->
+        <h2 class="text-xl font-bold mb-4">Book Inventory</h2>
+        <div class="overflow-x-auto">
+            <table class="w-full border-collapse border border-gray-200">
+                <thead>
+                    <tr class="bg-gray-50 text-left">
+                        <th class="border p-3">ID</th>
+                        <th class="border p-3">Title</th>
+                        <th class="border p-3">Author</th>
+                        <th class="border p-3">Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for book in books %}
+                    <tr class="hover:bg-gray-50">
+                        <td class="border p-3 text-center">{{ book[0] }}</td>
+                        <td class="border p-3 font-medium">{{ book[1] }}</td>
+                        <td class="border p-3 text-gray-600">{{ book[2] }}</td>
+                        <td class="border p-3 text-center text-green-600 font-semibold">{{ book[3] }}</td>
+                    </tr>
+                    {% else %}
+                    <tr>
+                        <td colspan="4" class="text-center p-4 text-gray-500">No books found in the database. Add one above!</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
